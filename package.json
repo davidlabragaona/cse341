@@ -1,0 +1,22 @@
+{
+  "name": "cse341",
+  "version": "1.0.0",
+  "description": "Course GitHub https://byui-cse.github.io/cse341-ww-course",
+  "main": "./ta/w01/backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd ./ta/w01/backend/ && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidlabragaona/cse341.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/davidlabragaona/cse341/issues"
+  },
+  "homepage": "https://github.com/davidlabragaona/cse341#readme"
+}
