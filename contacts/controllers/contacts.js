@@ -18,7 +18,38 @@ const get = async(req, res, next) => {
     });
 };
 
+const post = async(req, res, next) => {
+    if (!req.body) {
+        res.status(500).send({
+            message:
+              err.message || 'Some error occurred while creating the Temple.',
+            });
+        return;
+
+    }
+    let contact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday
+    };
+    console.log(req.body);
+    const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    console.log(result);
+    res.setHeader('Content-Type', "application/json")
+        .status(200)
+        .json({contactId: result.insertedId});
+    return;
+};
+
+const put = async(req, res, next) => {
+    return;
+};
+
 module.exports = {
     getAll,
-    get
+    get,
+    post,
+    put
 };

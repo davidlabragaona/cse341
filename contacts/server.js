@@ -1,10 +1,24 @@
 const express = require('express');
 const router = require('./routes/contacts');
-const mongodb = require('./db/connect')
+const mongodb = require('./db/connect');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use('/', router);
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+const options = {
+    explorer: "true"
+};
+
+app
+    .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
+    .use(cors())
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use('/', router);
 
 mongodb.initDb((err) => {
     if (err) {
