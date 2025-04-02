@@ -35,8 +35,8 @@
   "host": "contacts-fsh6.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/": {
