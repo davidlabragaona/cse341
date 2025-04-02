@@ -5,15 +5,47 @@
     "description": "API that handles CRUD operations for contacts",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "tags": [
+    {
+      "name": "Contacts"
+    }
+  ],
+  "servers": [
+    {
+      "name": "Production",
+      "url": "https://contacts-fsh6.onrender.com",
+      "description": "Production server",
+      "port": {
+        "default": "443"
+      }
+    },
+    {
+      "name": "Development",
+      "url": "http://localhost",
+      "description": "Development server",
+      "port": {
+        "enum": [
+          "8080",
+          "443"
+        ],
+        "default": 8080
+      }
+    }
+  ],
+  "host": "contacts-fsh6.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Returns a list of all contacts.",
+        "description": "When executing this route, the API will return the list of all contacts available in database.",
         "produces": [
           "application/json"
         ],
@@ -24,38 +56,45 @@
         }
       },
       "post": {
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": [
+          "Contacts"
         ],
+        "summary": "Creates a new contact.",
+        "description": "This route is the one in charge of creating a new contact. These fields are required: firsName, lastName, email, favoriteColor and birthday.",
         "parameters": [
           {
-            "name": "body",
+            "name": "request",
             "in": "body",
             "schema": {
               "type": "object",
+              "required": true,
               "properties": {
                 "firstName": {
-                  "example": "any",
-                  "required": "true"
+                  "example": "John"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "Doe"
                 },
                 "email": {
-                  "example": "any"
+                  "description": "Contact email",
+                  "example": "john.doe@mail.com"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "description": "Contact favorite color",
+                  "example": "red"
                 },
                 "birthday": {
-                  "example": "any"
+                  "description": "Contact birthday",
+                  "example": "2020-01-01"
                 }
               }
             }
           }
         ],
         "responses": {
+          "204": {
+            "description": "No Content"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -64,7 +103,11 @@
     },
     "/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Returns a single contact, specified by ID.",
+        "description": "This route returns an existing contact when providing the correct ID.",
         "produces": [
           "application/json"
         ],
@@ -74,51 +117,23 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "required": true,
-                  "example": "John",
-                  "type": "string"
-                },
-                "lastName": {
-                  "required": true,
-                  "example": "Doe",
-                  "type": "string"
-                },
-                "email": {
-                  "required": true,
-                  "example": "johndoe@mail.com",
-                  "type": "string"
-                },
-                "favoriteColor": {
-                  "required": true,
-                  "example": "red",
-                  "type": "string"
-                },
-                "birthday": {
-                  "required": true,
-                  "example": "2000-01-01",
-                  "type": "string"
-                }
-              }
-            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Incorrect data was supplied"
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Updates a contact specified by ID.",
+        "description": "This route will update the data for a specific contact. The API will update the fields provided in the request.",
         "parameters": [
           {
             "name": "id",
@@ -127,47 +142,99 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "requestBody",
             "in": "body",
-            "required": true,
-            "type": "object",
             "schema": {
-              "properties":{
-                "firstName":{
-                  "required": true,
-                  "example": "John",
-                  "type": "string"
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
                 },
-                "lastName":{
-                  "required": true,
-                  "example": "Doe",
-                  "type": "string"
+                "lastName": {
+                  "example": "any"
                 },
-                "email":{
-                  "required": true,
-                  "example": "johndoe@mail.com",
-                  "type": "string"
+                "email": {
+                  "example": "any"
                 },
-                "favoriteColor":{
-                  "required": true,
-                  "example": "red",
-                  "type": "string"
+                "favoriteColor": {
+                  "example": "any"
                 },
-                "birthday":{
-                  "required": true,
-                  "example": "2000-01-01",
-                  "type": "string"
+                "birthday": {
+                  "example": "any"
                 }
               }
             }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Deletes a contact specified by ID.",
+        "description": "This route deletes a contact from database when the specific ID is provided.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Contact": {
+        "type": "object",
+        "required": [
+          "firsName",
+          "lastName",
+          "email",
+          "favoriteColor",
+          "birthday"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@mail.com"
+          },
+          "favoriteColor": {
+            "type": "string",
+            "example": "red"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "2000-01-01"
+          }
+        }
+      }
+
     }
   }
 }

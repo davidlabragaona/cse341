@@ -9,12 +9,8 @@ const port = process.env.PORT || 8080;
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
-const options = {
-    explorer: "true"
-};
-
 app
-    .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options))
+    .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     .use(cors())
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
