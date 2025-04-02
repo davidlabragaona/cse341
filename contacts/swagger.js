@@ -5,7 +5,8 @@ const doc = {
     title: 'Contacts CRUD API',
     description: 'API that handles CRUD operations for contacts'
   },
-  host: 'localhost:8080'
+  host: 'localhost:8080',
+  schemes: ['https', 'http']
 };
 
 const outputFile = './swagger.json';

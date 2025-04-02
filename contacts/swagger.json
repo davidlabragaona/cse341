@@ -74,6 +74,41 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "required": true,
+                  "example": "John",
+                  "type": "string"
+                },
+                "lastName": {
+                  "required": true,
+                  "example": "Doe",
+                  "type": "string"
+                },
+                "email": {
+                  "required": true,
+                  "example": "johndoe@mail.com",
+                  "type": "string"
+                },
+                "favoriteColor": {
+                  "required": true,
+                  "example": "red",
+                  "type": "string"
+                },
+                "birthday": {
+                  "required": true,
+                  "example": "2000-01-01",
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -90,6 +125,41 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "schema": {
+              "properties":{
+                "firstName":{
+                  "required": true,
+                  "example": "John",
+                  "type": "string"
+                },
+                "lastName":{
+                  "required": true,
+                  "example": "Doe",
+                  "type": "string"
+                },
+                "email":{
+                  "required": true,
+                  "example": "johndoe@mail.com",
+                  "type": "string"
+                },
+                "favoriteColor":{
+                  "required": true,
+                  "example": "red",
+                  "type": "string"
+                },
+                "birthday":{
+                  "required": true,
+                  "example": "2000-01-01",
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
