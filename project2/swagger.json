@@ -1,0 +1,353 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Pet CRUD API",
+    "description": "API that handles CRUD operations for pet and vet appointments",
+    "version": "1.0.0"
+  },
+  "host": "project2-2epv.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "Pets"
+    },
+    {
+      "name": "Appointments"
+    }
+  ],
+  "paths": {
+    "/appointments/": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Gets all the appointments.",
+        "description": "This will bring the list of all appointments",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Creates a new appointment.",
+        "description": "It is necessary to provide: petId, date, time, veterinarian and room",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "petId": {
+                  "description": "A valid pet ID",
+                  "example": "67d25af759dc799ea1894a9d"
+                },
+                "date": {
+                  "description": "The date for the appointment",
+                  "example": "2000-01-01"
+                },
+                "time": {
+                  "description": "The time for the appointment",
+                  "example": "13:00"
+                },
+                "veterinarian": {
+                  "description": "The name of the veterinarian",
+                  "example": "Dr. Audrey Johns"
+                },
+                "room": {
+                  "description": "Room for the appointment",
+                  "example": "A1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/appointments/{id}": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Gets a specific appointment by Id.",
+        "description": "Returns the information for the appointment Id specified",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Updates an appointment with the specified Id.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "petId": {
+                  "description": "A valid pet ID",
+                  "example": "67d25af759dc799ea1894a9d"
+                },
+                "date": {
+                  "description": "The date for the appointment",
+                  "example": "2000-01-01"
+                },
+                "time": {
+                  "description": "The time for the appointment",
+                  "example": "13:00"
+                },
+                "veterinarian": {
+                  "description": "The name of the veterinarian",
+                  "example": "Dr. Audrey Johns"
+                },
+                "room": {
+                  "description": "Room for the appointment",
+                  "example": "A1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Deletes an appointment by Id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/pets/": {
+      "get": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Gets all the pets.",
+        "description": "Get all the pets.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Creates a pet.",
+        "description": "For creating a pet, it is necessary to provide petName, petType, petDOB, petWeight, petSize, petColor, petOwner and petHistory",
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "petName": {
+                  "description": "The Pet name",
+                  "example": "Rocky"
+                },
+                "petType": {
+                  "description": "Animal type",
+                  "example": "Dog"
+                },
+                "petDOB": {
+                  "description": "Estimated date of birth",
+                  "example": "2020-01-01"
+                },
+                "petWeight": {
+                  "description": "Pet weight",
+                  "example": "2 lbs"
+                },
+                "petSize": {
+                  "description": "Pet size",
+                  "example": "1 ft"
+                },
+                "petColor": {
+                  "description": "Pet color",
+                  "example": "Brown"
+                },
+                "petOwner": {
+                  "description": "Pet owner name",
+                  "example": "John Doe"
+                },
+                "petHistory": {
+                  "description": "Pet veterinarian history",
+                  "example": "CRP vaccine 6 monts"
+                }
+              },
+              "responses": {
+                "default": {
+                  "description": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/pets/{id}": {
+      "get": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Gets a pet by Id.",
+        "description": "Gets a pet data specified by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Updates a pet by Id.",
+        "description": "Updates a pet by Id. Fields: petName, petType, petDOB, petWeight, petSize, petColor, petOwner and petHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "petName": {
+                  "description": "The Pet name",
+                  "example": "Rocky"
+                },
+                "petType": {
+                  "description": "Animal type",
+                  "example": "Dog"
+                },
+                "petDOB": {
+                  "description": "Estimated date of birth",
+                  "example": "2020-01-01"
+                },
+                "petWeight": {
+                  "description": "Pet weight",
+                  "example": "2 lbs"
+                },
+                "petSize": {
+                  "description": "Pet size",
+                  "example": "1 ft"
+                },
+                "petColor": {
+                  "description": "Pet color",
+                  "example": "Brown"
+                },
+                "petOwner": {
+                  "description": "Pet owner name",
+                  "example": "John Doe"
+                },
+                "petHistory": {
+                  "description": "Pet veterinarian history",
+                  "example": "CRP vaccine 6 monts"
+                }
+              },
+              "responses": {
+                "default": {
+                  "description": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pets"
+        ],
+        "summary": "Deletes a pet by Id.",
+        "description": "Deletes a pet by Id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
