@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd ./project2/ && npm install",
-    "start-prod": "cd ./project2/ && node server.js",
+    "start-prod": "cd ./project2/ && node index.js",
     "swagger-prod": "cd ./project2/ && node swagger.js"
   },
   "repository": {
