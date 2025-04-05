@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/davidlabragaona/cse341/issues"
   },
-  "homepage": "https://github.com/davidlabragaona/cse341#readme"
+  "homepage": "https://github.com/davidlabragaona/cse341#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
