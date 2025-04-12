@@ -3,15 +3,17 @@ const router = require('express').Router();
 
 const petController = require('../controllers/pet');
 
+const { isAuthenticated} = require('../middleware/authenticate');
+
 //#swagger.tags=['Developer']
 router.get('/pets/', petController.listPets);
 //#swagger.tags=['Developer']
 router.get('/pets/:id', petController.getPet);
 //#swagger.tags=['Developer']
-router.post('/pets/', petController.createPet);
+router.post('/pets/', isAuthenticated, petController.createPet);
 //#swagger.tags=['Developer']
-router.put('/pets/:id', petController.updatePet);
+router.put('/pets/:id', isAuthenticated, petController.updatePet);
 //#swagger.tags=['Admin']
-router.delete('/pets/:id', petController.deletePet);
+router.delete('/pets/:id', isAuthenticated, petController.deletePet);
 
 module.exports = router;
