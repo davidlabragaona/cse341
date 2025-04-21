@@ -6,7 +6,7 @@ const doc = {
     description: 'API that handles CRUD operations for pet and vet appointments'
   },
   //host: 'localhost:8080',
-  host: 'project2-2epv.onrender.com'
+  host: 'project2-2epv.onrender.com',
   schemes: ['https', 'http']
 };
 
